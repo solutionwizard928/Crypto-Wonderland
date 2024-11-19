@@ -3,6 +3,7 @@ var path = require('path');
 var bodyParser = require('body-parser');
 var http = require('http');  
 var socketIo = require('socket.io'); 
+var connectDB = require('./config/Database');
 var cors = require('cors');  
 var app = express();
 
@@ -14,7 +15,7 @@ app.use(cors({
   methods: ['GET', 'POST'],
   credentials: true  
 }));
-
+ 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(publicPath));
@@ -25,13 +26,12 @@ const io = socketIo(server, {
     origin: 'http://localhost:5173', 
     methods: ['GET', 'POST'],
     credentials: true  
-  }
+  }    
 });
 
 var { bind } = require('./communication/communication');
 var sockets = [], users = [];
 
-// Bind sockets
 bind(io, sockets, users);
 
 server.listen(port, () => {

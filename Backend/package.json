@@ -1,5 +1,5 @@
 {
-  "name": "backend-mern-employee-salary-management",
+  "name": "Crypto_Wonderland",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -20,6 +20,7 @@
     "express-fileupload": "^1.4.0",
     "express-session": "^1.17.3",
     "moment": "^2.29.4",
+    "mysql": "^2.18.1",
     "mysql2": "^3.3.0",
     "nodemon": "^3.1.7",
     "sequelize": "^6.31.1",
