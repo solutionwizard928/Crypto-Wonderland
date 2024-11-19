@@ -10,7 +10,11 @@
   },
   "dependencies": {
     "@emailjs/browser": "^3.11.0",
+    "@faker-js/faker": "^9.2.0",
+    "@material-tailwind/react": "^3.0.0-beta.24",
     "@reduxjs/toolkit": "^1.9.5",
+    "@tanstack/match-sorter-utils": "^8.19.4",
+    "@tanstack/react-table": "^8.20.5",
     "apexcharts": "^3.37.0",
     "axios": "^1.4.0",
     "framer-motion": "^10.12.17",
@@ -31,7 +35,8 @@
     "react-type-animation": "^3.1.0",
     "socket.io-client": "^4.8.1",
     "sort-by": "^0.0.2",
-    "sweetalert2": "^11.6.13"
+    "sweetalert2": "^11.6.13",
+    "tailwind-merge": "^2.5.4"
   },
   "devDependencies": {
     "@types/react": "^18.0.27",

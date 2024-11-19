@@ -31,23 +31,6 @@ export default function SignUp({ isOpen, onClose, handleSignIn }) {
               style={{ flex: "1 1 0%" }}
             >
               <div className="flex h-full w-full bg-[#232626]">
-                {/* <div className="relative h-full w-1/2 flex-none">
-                  <img src="" alt="top-img" className="h-full w-full" />
-                  <img
-                    src=""
-                    alt="logo"
-                    className="absolute left-6 top-4 h-8 w-auto"
-                  />
-                  <div className="absolute bottom-0 left-0 w-full">
-                    <p className="w-full overflow-hidden whitespace-nowrap text-center text-4xl font-extrabold">
-                      Stay Untamed
-                    </p>
-                    <p className="text-base' mb-[104px] mt-1 w-full overflow-hidden whitespace-nowrap text-center font-semibold">
-                      Sign Up & Get Welcome Bonus
-                    </p>
-                  </div>
-                </div> */}
-
                 <div className="relative h-full w-full flex-none px-6 py-5">
                   <div className="flex h-8 w-full items-center justify-between">
                     <p className="text-xl font-extrabold">Sign Up</p>

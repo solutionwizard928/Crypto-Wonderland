@@ -7,7 +7,6 @@ import { constant } from "../../baseData/globalData";
 import * as socketAPI from "../../communication/communicate";
 
 import Lottery from "../../Assets/images/lottery.png";
-import Bracket from "../../Assets/images/bracket.png";
 
 import SignIn from "../Sign/SignIn";
 import SignUp from "../Sign/SignUp";
@@ -16,6 +15,7 @@ import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import LiveChat from "../../components/LiveChat";
 import Ticket from "../../components/Ticket";
+import Bracket from "../../components/Bracket";
 
 const TicketSearch = () => {
   // State for each input field
@@ -25,6 +25,12 @@ const TicketSearch = () => {
   const [isSignUpModalOpen, setIsSignUpModalOpen] = useState(false);
 
   const [inputValue, setInputValue] = useState("5");
+
+  const [startNumber, setStartNumber] = useState("0");
+  const [endNumber, setEndNumber] = useState("10");
+
+  const [isbBracketModalOpen, setIsBracketModalOpen] = useState(false);
+
 
   const handleSidebarCollapse = () => {
     if (sidebarWidth == "15rem") setSidebarWidth("72px");
@@ -49,6 +55,11 @@ const TicketSearch = () => {
     setIsSignInModalOpen(true);
   };
 
+  const handleBuyTicket = () => {
+    setIsBracketModalOpen(true);
+  }
+
+
   return (
     <div style={{ marginLeft: `${sidebarWidth == "15rem" ? "240px" : "0px"}` }}>
       <div className="mx-auto w-full max-w-[1348px] px-4 pb-18 pt-18 sm:px-6 sm:pb-6 sm:pt-[84px]">
@@ -67,7 +78,7 @@ const TicketSearch = () => {
                   <g id="Group 1556234962">
                     <path
                       id="Vector"
-                      d="M27.8034 11.033C27.8408 11.1116 27.8818 11.2082 27.9262 11.321L28.0704 11.7129L28.2359 12.2076C28.453 12.8495 28.2955 13.5953 27.88 14.2462C26.3976 16.5692 24.246 19.2551 21.9299 21.7911C19.0727 24.9185 16.2369 27.3164 13.4892 28.9622C12.6617 29.4579 11.5726 29.4489 10.738 28.9857L10.5351 28.8602L9.58033 28.1921L8.79018 27.627C8.46452 27.3922 8.38355 26.9291 8.61044 26.5914C8.81154 26.2917 9.18704 26.1924 9.49669 26.3386L9.6088 26.4045L10.6134 27.1214L11.3261 27.6179C11.7301 27.8933 12.3529 27.924 12.7712 27.673C17.2531 24.988 22.3534 19.8654 26.7713 13.4346C26.8353 13.3416 26.8798 13.1249 26.8834 12.9542L26.8781 12.8378L26.8514 12.7186L26.62 12.0839C26.5221 11.6722 26.564 11.386 26.8665 11.061C27.2366 10.6629 27.6166 10.6349 27.8043 11.0312L27.8034 11.033ZM8.74569 21.3722L8.98416 21.5266L9.19682 21.6819C9.51537 21.9265 9.58122 22.3933 9.34453 22.7228C9.10784 23.0523 8.65849 23.121 8.34083 22.8763C7.19388 21.9933 6.03803 22.1197 4.67663 23.2979C4.50134 23.4496 4.27 23.5038 4.05022 23.4496L3.9203 23.4044L3.8073 23.3385L1.9752 22.0204C1.64953 21.7857 1.56856 21.3225 1.79546 20.9849C1.96897 20.7258 2.27773 20.6129 2.56158 20.6887L2.68704 20.7357L2.79382 20.7989L4.15432 21.8362L4.21839 21.7866C5.76486 20.6481 7.31134 20.5028 8.74569 21.3722Z"
+                      d="M27.8034 11.033C27.8408 11.1116 27.8818 11.2082 27.9262 11.321L28.0704 11.7129L28.2359 12.2076C28.453 12.8495 28.2955 13.5953 27.88 14.2462C26.3976 16.5692 24.246 19.2551 21.9299 21.7911C19.0727 24.9185 16.2369 27.3164 13.4892 28.9622C12.6617 29.4579 11.5726 29.4489 10.738 28.9857L10.5351 28.8602L9.58033 28.1921L8.79018 27.627C8.46452 27.3922 8.38355 26.9291 8.61044 26.5914C8.81154 26.2917 9.18704 26.1924 9.49669 26.3386L9.6088 26.4045L10.6134 27.1214L11.3261 27.6179C11.7401 27.8933 12.3529 27.924 12.7712 27.673C17.2531 24.988 22.3534 19.8654 26.7713 13.4346C26.8353 13.3416 26.8798 13.1249 26.8834 12.9542L26.8781 12.8378L26.8514 12.7186L26.62 12.0839C26.5221 11.6722 26.564 11.386 26.8665 11.061C27.2366 10.6629 27.6166 10.6349 27.8043 11.0312L27.8034 11.033ZM8.74569 21.3722L8.98416 21.5266L9.19682 21.6819C9.51537 21.9265 9.58122 22.3933 9.34453 22.7228C9.10784 23.0523 8.65849 23.121 8.34083 22.8763C7.19388 21.9933 6.03803 22.1197 4.67663 23.2979C4.50134 23.4496 4.27 23.5038 4.05022 23.4496L3.9203 23.4044L3.8073 23.3385L1.9752 22.0204C1.64953 21.7857 1.56856 21.3225 1.79546 20.9849C1.96897 20.7258 2.27773 20.6129 2.56158 20.6887L2.68704 20.7357L2.79382 20.7989L4.15432 21.8362L4.21839 21.7866C5.76486 20.6481 7.31134 20.5028 8.74569 21.3722Z"
                       className="fill-[#24ee89]"
                     ></path>
                     <path
@@ -172,12 +183,12 @@ const TicketSearch = () => {
                           } // Increment value
                         ></button>
                       </div>
-                    </div>
+                    </div>  
                   ))}
                 </div>
 
                 <div>
-                  <button className="">
+                  <button className="" onClick={handleBuyTicket}>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       fill="none"
@@ -195,7 +206,7 @@ const TicketSearch = () => {
                   </button>
                 </div>
               </div>
-              <div className="min-h-[80vh] h-[80vh] overflow-auto">
+              <div className="h-[80vh] min-h-[80vh] overflow-auto">
                 <div className="mt-[8rem] flex flex-wrap gap-7">
                   {Array.from({ length: 10 }).map((_, index) => (
                     <Ticket key={index} />
@@ -204,10 +215,67 @@ const TicketSearch = () => {
               </div>
 
               <div className="flex justify-center">
+                <button className="rounded-full bg-[#232626] p-1 mx-1 shadow-xl">
+                  <svg
+                    className="inline-block h-[2rem] w-[2rem] cursor-pointer fill-white font-[2rem] "
+                    focusable="false"
+                    aria-hidden="true"
+                    viewBox="0 0 24 24"
+                    data-testid="FirstPageIcon"
+                    style={{
+                      transition: "fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms",
+                    }}
+                  >
+                    <path d="M18.41 16.59 13.82 12l4.59-4.59L17 6l-6 6 6 6zM6 6h2v12H6z"></path>
+                  </svg>
+                </button>
+
+                <button className="rounded-full bg-[#232626] p-1 mx-1 shadow-xl">
+                  <svg 
+                    className="Medium h-[2rem] w-[2rem] cursor-pointer fill-white font-[2rem]"
+                    focusable="false"
+                    aria-hidden="true"
+                    viewBox="0 0 24 24"
+                    data-testid="KeyboardArrowLeftIcon"
+                  >
+                    <path d="M15.41 16.59 10.83 12l4.58-4.59L14 6l-6 6 6 6z"></path>
+                  </svg>
+                </button>
+
+                <input type="text" className="w-[50px] h-[40px] mx-2 text-black text-center outline-none" value={startNumber} onChange={(e) => setStartNumber(e.target.value)}/>
+
+              
+                <input type="text" className="w-[50px] h-[40px] mx-2 text-black text-center outline-none" value={endNumber} onChange={(e) => setEndNumber(e.target.value)}/>
                 
+
+                <button className="rounded-full bg-[#232626] p-1 mx-1 shadow-xl">
+                  <svg
+                    className="h-[2rem] w-[2rem] cursor-pointer fill-white font-[2rem]"
+                    focusable="false"
+                    aria-hidden="true"
+                    viewBox="0 0 24 24"
+                    data-testid="KeyboardArrowRightIcon"
+                  >
+                    <path d="M8.59 16.59 13.17 12 8.59 7.41 10 6l6 6-6 6z"></path>
+                  </svg>
+                </button>
+
+                <button className="rounded-full bg-[#232626] p-1 mx-1 shadow-xl">
+                  <svg
+                    className="h-[2rem] w-[2rem] cursor-pointer fill-white font-[2rem]"
+                    focusable="false"
+                    aria-hidden="true"
+                    viewBox="0 0 24 24"
+                    data-testid="LastPageIcon"
+                  >
+                    <path d="M5.59 7.41 10.18 12l-4.59 4.59L7 18l6-6-6-6zM16 6h2v12h-2z"></path>
+                  </svg>
+                </button>
               </div>
             </div>
-            <div className="mb-2 rounded-xl bg-[#323738] p-4 sm:w-90">qqq</div>
+            <div className="mb-2 rounded-xl bg-[#323738] p-4 sm:w-90">
+              <div className="font-[800] text-white text-[1.3rem]">Recent History</div>
+            </div>
           </div>
         </div>
       </div>
@@ -231,6 +299,7 @@ const TicketSearch = () => {
         onClose={toggleSignUpModal}
         handleSignIn={handleSignIn}
       />
+      <Bracket isOpen={isbBracketModalOpen} onClose={() => setIsBracketModalOpen(false)}/>
     </div>
   );
 };
